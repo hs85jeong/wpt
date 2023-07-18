@@ -3,17 +3,9 @@
 
 const invalidConfigs = [
   {
-    comment: 'Emtpy codec',
+    comment: 'Empty codec',
     config: {
       codec: '',
-      width: 640,
-      height: 480,
-    },
-  },
-  {
-    comment: 'Unrecognized codec',
-    config: {
-      codec: 'bogus',
       width: 640,
       height: 480,
     },
@@ -51,7 +43,7 @@ const invalidConfigs = [
       displayHeight: 0,
       height: 480,
     },
-  }
+  },
 ];
 
 invalidConfigs.forEach(entry => {
@@ -60,11 +52,18 @@ invalidConfigs.forEach(entry => {
   }, 'Test that VideoEncoder.isConfigSupported() rejects invalid config:' + entry.comment);
 });
 
-
 const validButUnsupportedConfigs = [
   {
     comment: 'Invalid scalability mode',
     config: {codec: 'vp8', width: 640, height: 480, scalabilityMode: 'ABC'}
+  },
+  {
+    comment: 'Unrecognized codec',
+    config: {
+      codec: 'bogus',
+      width: 640,
+      height: 480,
+    },
   },
   {
     comment: 'Width is too large',
@@ -85,8 +84,8 @@ const validButUnsupportedConfigs = [
   {
     comment: 'Too strenuous accelerated encoding parameters',
     config: {
-      codec: "vp8",
-      hardwareAcceleration: "prefer-hardware",
+      codec: 'vp8',
+      hardwareAcceleration: 'prefer-hardware',
       width: 7000,
       height: 7000,
       bitrate: 1,
@@ -96,7 +95,7 @@ const validButUnsupportedConfigs = [
   {
     comment: 'Odd sized frames for H264',
     config: {
-      codec: "avc1.42001E",
+      codec: 'avc1.42001E',
       width: 641,
       height: 480,
       bitrate: 1000000,
@@ -189,5 +188,3 @@ validConfigs.forEach(config => {
     }
   }, "VideoEncoder.isConfigSupported() supports:" + JSON.stringify(config));
 });
-
-
